@@ -6,6 +6,8 @@ example = Namespace("api")
 @example.route('/example')
 class Example(Resource):
     def get(self):
-        return { 'message': foo() }
+        data = { 'message': f"{foo()}" }
+        return data, 200
     def post(self):
-        return { 'message': foo() }
+        data = { 'message': f"{foo()}" }
+        return data, 200
