@@ -1,0 +1,4 @@
+virtualenv/
+.env
+# Ignore all __pycache__ folders
+**/__pycache__/
