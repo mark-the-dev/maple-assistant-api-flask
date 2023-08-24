@@ -1,6 +1,7 @@
 import os
+from dotenv import load_dotenv
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
@@ -12,11 +13,12 @@ class DevelopmentConfig(Config):
     ENV_NAME = "dev"
 
     # SQLAlchemy Config
-    # DB_HOST = os.getenv("DB_HOST")
-    # DB_USER = os.getenv("DB_USER")
-    # DB_PASSWORD = os.getenv("DB_PASSWORD")
-    # DB_DATABASE = os.getenv("DB_DATABASE")
-
+    DB_HOST = os.getenv("DB_HOST")
+    DB_USER = os.getenv("DB_USER")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_DATABASE = os.getenv("DB_DATABASE")
+    SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_DATABASE}"
+    
 """
 flask --app 'app/main:create_app("test")' run
 """
@@ -25,10 +27,11 @@ class TestingConfig(Config):
     TESTING = True
 
     # SQLAlchemy Config
-    # DB_HOST = os.getenv("DB_HOST")
-    # DB_USER = os.getenv("DB_USER")
-    # DB_PASSWORD = os.getenv("DB_PASSWORD")
-    # DB_DATABASE = os.getenv("DB_DATABASE")
+    DB_HOST = os.getenv("DB_HOST")
+    DB_USER = os.getenv("DB_USER")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_DATABASE = os.getenv("DB_DATABASE")
+    SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/TEST_{DB_DATABASE}"
 
 """
 flask --app 'app/main:create_app("prod")' run

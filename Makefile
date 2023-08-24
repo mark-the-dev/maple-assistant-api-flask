@@ -1,4 +1,4 @@
-.PHONY: clean python-packages install test dev prod all
+.PHONY: clean python-packages install test dev prod unittest all
 
 clean:
 
@@ -15,5 +15,8 @@ dev:
 
 prod:
 	export FLASK_DEBUG=0 && flask --app 'app/main:create_app("prod")' run
+
+unittest:
+	python -m unittest discover -s app
 
 all: clean install test prod
