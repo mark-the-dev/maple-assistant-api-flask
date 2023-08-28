@@ -5,6 +5,7 @@ auth = Namespace("auth")
 
 @auth.route('/register')
 class Register(Resource):
+    @auth.doc(description="Registering new user")
     def post(self):
         # Define arguments in request body
         parser = reqparse.RequestParser()
@@ -38,6 +39,7 @@ class Register(Resource):
 
 @auth.route('/login')
 class Login(Resource):
+    @auth.doc(description="Logging in user")
     def post(self):
         # Define arguments in request body
         parser = reqparse.RequestParser()

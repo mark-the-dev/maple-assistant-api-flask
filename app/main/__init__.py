@@ -33,4 +33,7 @@ def create_app(config_name):
     from .routes.auth_routes import auth
     api.add_namespace(auth)
     
+    from .routes.character_routes import character
+    api.add_namespace(character)
+    
     return app
