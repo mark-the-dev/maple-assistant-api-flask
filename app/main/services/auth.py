@@ -38,3 +38,34 @@ def create_new_user(username, password):
         raise
     
     return user
+
+"""
+Verifies user login credentials.
+
+Parameters:
+- username (str): The username of the user trying to log in.  
+- password (str): The password of the user trying to log in.
+
+Queries the database for a user with the given username. 
+If a user is found, hashes the given password and compares it to the 
+stored hash. 
+
+Returns:
+- User object if username and password are valid.
+- False if username found but password invalid.  
+- None if username not found.
+
+"""
+def verify_login(username, password):
+    # Query for user
+    user = User.query.filter_by(username=username).first()
+    
+    if user:
+        # Verify password
+        password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        if user.password == password_hashed:
+            return user
+        else:
+            return False
+    else:
+        return None

@@ -26,7 +26,7 @@ class Register(Resource):
         except Exception:
             return {
                 "errors": {
-                    "username": f"Issue with inputed username"
+                    "username": f"Issue with inputed value"
                 },
                 "message": f"User with username [{username}] already exists!"
             }, 409
@@ -35,5 +35,40 @@ class Register(Resource):
             "message": f"Success!",
             "user": f"{user}"
         }, 200
+
+@auth.route('/login')
+class Login(Resource):
+    def post(self):
+        # Define arguments in request body
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True)
+        parser.add_argument('password', type=str, required=True)
         
+        # Grab arguments from the request body
+        args = parser.parse_args()
         
+        username = args['username']
+        password = args['password']
+        
+        user = verify_login(username, password)
+        
+        if user is not None:
+            if user:
+                return {
+                    "message": f"Success!",
+                    "user": f"{user}"
+                }, 200
+            else:
+                return {
+                    "errors": {
+                        "password": f"Issue with inputed value"
+                    },
+                    "message": f"Incorrect password!"
+                }, 401
+        else:
+            return {
+                "errors": {
+                    "username": f"Issue with inputed value"
+                },
+                "message": f"User with username [{username}] doesn't exist!"
+            }, 401
