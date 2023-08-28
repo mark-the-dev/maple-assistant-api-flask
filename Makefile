@@ -17,6 +17,6 @@ prod:
 	export FLASK_DEBUG=0 && flask --app 'app/main:create_app("prod")' run
 
 unittest:
-	python -m unittest discover -s app
+	python -m unittest discover -s app -v
 
 all: clean install test prod
