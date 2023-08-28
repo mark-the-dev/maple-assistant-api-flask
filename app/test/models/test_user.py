@@ -6,7 +6,7 @@ from app.main.models.user import User
 
 class TestUser(TestGroup):
     
-    def test_create_user(self):
+    def test_constructor(self):
         # Arrange
         username = "testuser"
         password = "testpassword"
@@ -21,7 +21,7 @@ class TestUser(TestGroup):
         self.assertEqual(username, user.username)
         self.assertEqual(password, user.password)
         
-    def test_user_repr(self):
+    def test_repr(self):
         # Arrange
         user = User(
             id=1,
