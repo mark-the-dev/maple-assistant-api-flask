@@ -20,13 +20,13 @@ def create_app(config_name):
     api.init_app(app)
     
     # Establish Database Tables
-    from .models.example_model import Example
+    from .models.user import User
     
     with app.app_context():
         db.create_all()
     
-    # Establish Endpoint Connections
-    from .routes.example_route import example
-    api.add_namespace(example)
+    # Establish Endpoint Connections    
+    from .routes.auth_routes import auth
+    api.add_namespace(auth)
     
     return app
