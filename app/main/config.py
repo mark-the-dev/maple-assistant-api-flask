@@ -31,7 +31,8 @@ class TestingConfig(Config):
     DB_USER = os.getenv("DB_USER")
     DB_PASSWORD = os.getenv("DB_PASSWORD")
     DB_DATABASE = os.getenv("DB_DATABASE")
-    SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/TEST_{DB_DATABASE}"
+    # SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/TEST_{DB_DATABASE}"
+    SQLALCHEMY_DATABASE_URI = f"sqlite://"
 
 """
 flask --app 'app/main:create_app("prod")' run
